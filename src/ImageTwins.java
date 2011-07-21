@@ -71,7 +71,7 @@ public class ImageTwins {
 	controlPane.add(openImageButton);
 
 	// slider to set the tolerance
-	toleranceSlider = new JSlider(JSlider.HORIZONTAL, 0, 250, 20);
+	toleranceSlider = new JSlider(JSlider.HORIZONTAL, 0, 250, 0);
 	toleranceSlider.setMajorTickSpacing(50);
 	toleranceSlider.setMinorTickSpacing(10);
 	toleranceSlider.setPaintTicks(true);
@@ -150,6 +150,14 @@ public class ImageTwins {
 		// get pixel
 		int firstRGB = firstImgOrig.getRGB(x, y);
 		int secondRGB = secondImgOrig.getRGB(x, y);
+		
+		// split into values
+		int fr = firstRGB & 0xFF0000 >> 16;
+	    	int fg = firstRGB & 0x00FF00 >> 8;
+	    	int fb = firstRGB & 0x0000FF;
+	    	int sr = secondRGB & 0xFF0000 >> 16;
+	    	int sg = secondRGB & 0x00FF00 >> 8;
+	    	int sb = secondRGB & 0x0000FF;
 		
 		// testing, not final algorithm
 		if (firstRGB != secondRGB) {
