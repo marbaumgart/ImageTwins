@@ -141,8 +141,24 @@ public class ImageTwins {
      * @param tolerance
      */
     private void compareImages(int tolerance) {
+	
 	int width = firstImgOrig.getWidth(null);
 	int height = firstImgOrig.getHeight(null);
 	
+	for (int x = 0; x < width; x++) {
+	    for (int y = 0; y < height; y++) {
+		// get pixel
+		int firstRGB = firstImgOrig.getRGB(x, y);
+		int secondRGB = secondImgOrig.getRGB(x, y);
+		
+		// testing, not final algorithm
+		if (firstRGB != secondRGB) {
+		    secondImg.setRGB(x, y, 0xFF00FF00);
+		}
+	    }
+	}
+	
+	// update GUI
+	secondImgLabel.setIcon(new ImageIcon(secondImg));
     }
 }
